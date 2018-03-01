@@ -15,6 +15,10 @@
  */
 package org.greenrobot.eventbus;
 
+/**
+ * Subscription 是一个订阅，封装了订阅者和对应的回调方法
+ * 而 SubscriberMethod 又包含了我们订阅的各种事件
+ */
 final class Subscription {
     final Object subscriber;
     final SubscriberMethod subscriberMethod;

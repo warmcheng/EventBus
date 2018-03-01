@@ -52,7 +52,9 @@ public class EventBusAnnotationProcessor extends AbstractProcessor {
     public static final String OPTION_EVENT_BUS_INDEX = "eventBusIndex";
     public static final String OPTION_VERBOSE = "verbose";
 
-    /** Found subscriber methods for a class (without superclasses). */
+    /**
+     * Found subscriber methods for a class (without superclasses).
+     */
     private final ListMap<TypeElement, ExecutableElement> methodsByClass = new ListMap<>();
     private final Set<TypeElement> classesToSkip = new HashSet<>();
 

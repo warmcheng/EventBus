@@ -53,11 +53,13 @@ class SubscriberMethodFinder {
     }
 
     List<SubscriberMethod> findSubscriberMethods(Class<?> subscriberClass) {
+        // Map： 以类的 Class 为 key,以 List 为 value，存储订阅过的方法及其信息
         List<SubscriberMethod> subscriberMethods = METHOD_CACHE.get(subscriberClass);
         if (subscriberMethods != null) {
             return subscriberMethods;
         }
 
+        // 如果没有配置使用索引加速，就通过反射来查找订阅的方法，否则通过索引加速来查找
         if (ignoreGeneratedIndex) {
             subscriberMethods = findUsingReflection(subscriberClass);
         } else {
@@ -72,6 +74,12 @@ class SubscriberMethodFinder {
         }
     }
 
+    /**
+     * 索引加速，否则会通过反射来查找对应方法，影响性能
+     *
+     * @param subscriberClass
+     * @return
+     */
     private List<SubscriberMethod> findUsingInfo(Class<?> subscriberClass) {
         FindState findState = prepareFindState();
         findState.initForSubscriber(subscriberClass);
